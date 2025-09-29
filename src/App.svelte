@@ -130,14 +130,24 @@
   
   // 게임 리셋
   function resetGame() {
+    // 임시로 다른 값으로 설정
+    currentPlayer = 2;
+    gameOver = true;
+
+    // 보드 초기화
     board = Array(8).fill().map(() => Array(8).fill(0));
     board[3][3] = 2;
     board[3][4] = 1;
     board[4][3] = 1;
     board[4][4] = 2;
-    currentPlayer = 1;
-    gameOver = false;
-    winner = '';
+
+    //잠시 후 정상 값으로 복구
+    setTimeout(() => {
+      currentPlayer = 1;
+      gameOver = false;
+      winner = '';
+      board = [...board];
+    }, 0);
   }
   
   // 돌 개수 계산
@@ -146,7 +156,7 @@
 </script>
 
 <main>
-  <h1>🔵 오셀로 게임 ⚫</h1>
+  <h1>🔵 1주차 오셀로 게임 ⚫</h1>
   
   <GameInfo 
     {currentPlayer} 
